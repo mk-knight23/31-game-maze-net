@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background-color: #020617;
+  color: #ffffff;
+}
+
+body {
+  @apply antialiased overflow-hidden select-none bg-maze-bg;
+  margin: 0;
+  height: 100vh;
+}
+
+.glass-panel {
+  @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl;
+}
+
+.neon-text-cyan {
+  @apply text-maze-neon drop-shadow-[0_0_8px_rgba(0,243,255,0.8)];
+}
+
+.neon-border {
+  @apply border-2 border-maze-neon shadow-[0_0_15px_rgba(0,243,255,0.3)];
+}
+
+canvas {
+  touch-action: none;
+}

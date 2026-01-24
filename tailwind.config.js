@@ -1,13 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        game: { bg: '#0a0a1a', accent: '#00d4ff', gold: '#ffd700', success: '#00ff88' }
+        maze: {
+          neon: '#00f3ff',
+          grid: '#1e1b4b',
+          bg: '#020617',
+          success: '#10b981'
+        }
       },
-      fontFamily: { game: ['Orbitron', 'monospace'] },
+      fontFamily: {
+        game: ['"Press Start 2P"', 'system-ui'],
+        sans: ['Inter', 'sans-serif']
+      }
     },
   },
   plugins: [],
