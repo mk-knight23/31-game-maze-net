@@ -2,6 +2,17 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { STORAGE_KEYS } from '@/utils/constants'
 
+// V2: Level result tracking
+export interface LevelResult {
+  level: number
+  size: number
+  time: number
+  moves: number
+  parTime: number
+  stars: number
+  date: string
+}
+
 export const useStatsStore = defineStore('stats', () => {
   const totalGames = ref<number>(0)
   const totalWins = ref<number>(0)
@@ -10,6 +21,8 @@ export const useStatsStore = defineStore('stats', () => {
   const totalTimePlayed = ref<number>(0)
   const currentStreak = ref<number>(0)
   const longestStreak = ref<number>(0)
+  // V2: Level history for replayability
+  const levelHistory = ref<LevelResult[]>([])
 
   const winRate = computed(() => {
     if (totalGames.value === 0) return 0
@@ -85,8 +98,30 @@ export const useStatsStore = defineStore('stats', () => {
     totalLosses.value = 0
     totalTimePlayed.value = 0
     currentStreak.value = 0
+    levelHistory.value = []
     saveToStorage()
   }
+
+  // V2: Add level result with star rating
+  function addResult(result: LevelResult) {
+    levelHistory.value.unshift(result) // Add to beginning
+    // Keep only last 50 results
+    if (levelHistory.value.length > 50) {
+      levelHistory.value = levelHistory.value.slice(0, 50)
+    }
+    // Also record as win for backwards compatibility
+    recordWin(result.time)
+  }
+
+  // V2: Get best result for a specific level/size combo
+  function getBestForLevel(level: number, size: number): LevelResult | undefined {
+    return levelHistory.value.find(r => r.level === level && r.size === size)
+  }
+
+  // V2: Get total stars earned
+  const totalStars = computed(() => {
+    return levelHistory.value.reduce((sum, r) => sum + r.stars, 0)
+  })
 
   return {
     totalGames,
@@ -98,10 +133,14 @@ export const useStatsStore = defineStore('stats', () => {
     longestStreak,
     winRate,
     averageTime,
+    levelHistory,
+    totalStars,
     loadFromStorage,
     saveToStorage,
     recordWin,
     recordLoss,
     resetStats,
+    addResult,
+    getBestForLevel,
   }
 })

@@ -1,85 +1,43 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --maze-neon: #00f3ff;
-  --maze-grid: #1e1b4b;
-  --maze-bg: #020617;
-  color-scheme: dark;
+@theme {
+  --color-maze-neon: #00f3ff;
+  --color-maze-grid: #1e1b4b;
+  --color-maze-bg: #020617;
+  --color-maze-success: #10b981;
+
+  --font-display: "Inter", system-ui, sans-serif;
 }
 
-.dark {
-  --maze-neon: #00f3ff;
-  --maze-grid: #1e1b4b;
-  --maze-bg: #020617;
-  color-scheme: dark;
+:root {
+  --color-bg-primary: #020617;
+  --color-bg-secondary: #0f172a;
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-accent: #00f3ff;
 }
 
 .light {
-  --maze-neon: #0ea5e9;
-  --maze-grid: #e2e8f0;
-  --maze-bg: #f8fafc;
-  color-scheme: light;
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #e2e8f0;
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #64748b;
+  --color-accent: #0ea5e9;
 }
 
 html {
-  background-color: var(--maze-bg);
+  @apply scroll-smooth;
 }
 
 body {
-  @apply antialiased overflow-hidden select-none;
-  margin: 0;
-  height: 100vh;
+  @apply bg-maze-bg text-slate-100 antialiased;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-.glass-panel {
-  @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl;
-}
-
-.dark .glass-panel {
-  @apply bg-slate-900/50 border-white/10;
-}
-
-.light .glass-panel {
-  @apply bg-white/80 border-slate-200;
-}
-
-.neon-text-cyan {
-  color: var(--maze-neon);
-  text-shadow: 0 0 8px rgba(0, 243, 255, 0.8);
-}
-
-.neon-border {
-  border: 2px solid var(--maze-neon);
-  box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
-}
-
-canvas {
-  touch-action: none;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-kbd {
-  @apply px-2 py-1 text-xs font-mono bg-white/10 rounded border border-white/10;
-}
-
-.light kbd {
-  @apply bg-slate-200 border-slate-300;
+@utility glass-panel {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }

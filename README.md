@@ -11,10 +11,19 @@ This project replaces the legacy React/Three.js prototype with a modern Vue 3 ar
 | :--- | :--- | :--- |
 | **Generator** | Basic iteration | **Recursive Backtracking (Procedural)** |
 | **3D Rendering** | Standard Three.js | **TresJS (Vue-optimized WebGL)** |
-| **Perspective** | Fixed | **Dynamic Perspective with Controls** |
-| **Visuals** | Flat Shading | **Neon Emissive Shaders + Bloom** |
+| **Perspective** | Fixed | **First-Person + Third-Person Toggle** |
+| **Visuals** | Flat Shading | **Neon Emissive Shaders + Path Trail** |
 | **State** | React Context | **Pinia (Enterprise State Management)** |
 | **Performance**| Moderate | **Hardware-accelerated rendering** |
+| **FX** | None | **Victory Particles + Path Trail** |
+| **Maze Sizes** | Fixed | **Quick Presets (11x, 15x, 21)** |
+
+## New Features
+
+- **Path Trail**: Glowing trail showing where you've been in the maze
+- **Victory Particles**: Celebratory particle explosion on completing a level
+- **Camera Toggle**: Switch between first-person and third-person views
+- **Size Presets**: Quick-select maze difficulty (11x, 15x, or 21) from header
 
 ## Tech Stack
 - **Framework:** Vue 3.5 (Script Setup)
@@ -51,3 +60,16 @@ Deployed to GitHub Pages via automated CI/CD workflows. Optimized for 60fps stab
 
 **License:** MIT
 **Architect:** mk-knight23
+
+---
+
+## 📝 Design Notes (V2)
+
+### Intentional Quirk: The Star Rating System
+I added a 3-star efficiency rating based on move count vs. optimal path. The formula is arbitrary—optimal is roughly mazeSize × 2 moves. Real optimal pathfinding would require solving the maze computationally, which is overkill. The stars are "fair enough" estimates. Humans respond to gamification, even when the math is fuzzy.
+
+### Tradeoff: No Undo Button
+You can backtrack, but there's no "undo last move" button. If you trap yourself in a dead end, you walk out manually. The tradeoff: realism vs. convenience. An undo button would make the maze trivial—just try every path and rewind. Walking back reinforces the "being lost" feeling. It's annoying on purpose.
+
+### What I Chose NOT to Build
+No procedural difficulty that adapts to your skill. The maze sizes are fixed (11/15/21). Adaptive difficulty would track your win rate and adjust maze complexity. I didn't build that because predictable difficulty is honest. Sometimes you want an easy maze. Sometimes you want punishment. The player chooses, not the algorithm.
