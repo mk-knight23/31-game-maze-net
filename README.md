@@ -54,8 +54,16 @@ Deployed to GitHub Pages via automated CI/CD workflows. Optimized for 60fps stab
 
 ---
 
-### Live Demo
-- GitHub Pages: <https://mk-knight23.github.io/37-Maze-Puzzle/>
+<p align="center">
+  <a href="https://31-game-maze-net.vercel.app">🚀 Play Now (Vercel)</a>
+</p>
+
+## 🎮 Live Demos
+
+| Platform | URL |
+|----------|-----|
+| **Vercel** | [31-game-maze-net.vercel.app](https://31-game-maze-net.vercel.app) |
+| **Render** | [three1-game-maze-net.onrender.com](https://three1-game-maze-net.onrender.com) |
 - Vercel: [Deploy your own](https://vercel.com/new)
 - Netlify: [Deploy your own](https://app.netlify.com/start)
 
