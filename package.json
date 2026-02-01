@@ -1,8 +1,12 @@
 {
-  "name": "astray-v2-vue",
+  "name": "31-game-maze-net",
   "private": true,
-  "version": "2.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-knight23/31-game-maze-net.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",

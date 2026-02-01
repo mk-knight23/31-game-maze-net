@@ -1,36 +1,27 @@
-# Astray - Quantum Maze Engine
+# 31-game-maze-net
 
-A professional WebGL 3D maze survival game built with **Vue 3**, **TresJS**, and **Tailwind CSS**. A cinematic reconstruction of the classic labyrinth puzzle, optimized for hardware-accelerated performance and immersive navigation.
+<p align="center">
+  <img src="https://img.shields.io/badge/Version-3.0.0-00F3FF?style=for-the-badge" alt="Version">
+  <img src="https://img.shields.io/badge/Style-Neural_Cyber-FF00E5?style=for-the-badge" alt="Style">
+  <img src="https://img.shields.io/badge/Stack-Vue_TresJS-4FC08D?style=for-the-badge&logo=vue.js" alt="Stack">
+</p>
 
-## Overview
-This project replaces the legacy React/Three.js prototype with a modern Vue 3 architecture. It leverages a recursive backtracking algorithm for procedural maze generation and declarative 3D scene management via TresJS.
+## 🌐 The Synaptic Escape
 
-## Features Comparison
+**MAZE_NET** is a high-fidelity, hardware-accelerated 3D labyrinth engine that simulates neural pathway navigation. Trapped within a shifting quantum grid, you must locate the exit node before the connection destabilizes.
 
-| Feature | Legacy (React) | Upgraded (Vue 3 v2.0) |
-| :--- | :--- | :--- |
-| **Generator** | Basic iteration | **Recursive Backtracking (Procedural)** |
-| **3D Rendering** | Standard Three.js | **TresJS (Vue-optimized WebGL)** |
-| **Perspective** | Fixed | **First-Person + Third-Person Toggle** |
-| **Visuals** | Flat Shading | **Neon Emissive Shaders + Path Trail** |
-| **State** | React Context | **Pinia (Enterprise State Management)** |
-| **Performance**| Moderate | **Hardware-accelerated rendering** |
-| **FX** | None | **Victory Particles + Path Trail** |
-| **Maze Sizes** | Fixed | **Quick Presets (11x, 15x, 21)** |
-
-## New Features
-
-- **Path Trail**: Glowing trail showing where you've been in the maze
-- **Victory Particles**: Celebratory particle explosion on completing a level
-- **Camera Toggle**: Switch between first-person and third-person views
-- **Size Presets**: Quick-select maze difficulty (11x, 15x, or 21) from header
+### ⚡ Neural Protocol (v3.0)
+- **Neural Void Design**: Re-engineered obsidian-base design system with electric cyan pulse highlights.
+- **Quantum HUD**: Tactical overlay for real-time telemetry and efficiency tracking.
+- **Dual-Mode Sync**: Seamlessly toggle between Cognitive Overview (3P) and Direct Neural Interface (1P).
+- **Emissive Pathing**: Hardware-accelerated memory trails that visualize your navigation history.
 
 ## Tech Stack
-- **Framework:** Vue 3.5 (Script Setup)
-- **3D Engine:** TresJS + Three.js
-- **State:** Pinia
-- **Styling:** Tailwind CSS (Quantum palette)
-- **Icons:** Lucide Vue
+- **Core**: Vue 3.5 (Script Setup)
+- **Engine**: TresJS + Three.js
+- **Intelligence**: Pinia (Neural State)
+- **Styling**: Tailwind CSS v4 (Obsidian Matrix)
+- **Icons**: Lucide Vue
 
 ## Setup & Build Instructions
 

@@ -207,7 +207,7 @@ function formatTime(seconds: number): string {
 </script>
 
 <template>
-  <div class="h-screen w-screen flex flex-col bg-maze-bg overflow-hidden font-sans dark:bg-slate-950">
+  <div class="h-screen w-screen flex flex-col bg-maze-obsidian overflow-hidden font-mono text-maze-bone">
     <SettingsPanel />
 
     <div class="absolute inset-0 z-0">
@@ -223,21 +223,35 @@ function formatTime(seconds: number): string {
            <template v-for="(row, i) in mazeData" :key="i">
               <template v-for="(cell, j) in row" :key="j">
                  <TresMesh v-if="cell === 1" :position="[i, 0.5, j]">
-                    <TresBoxGeometry :args="[1, 1.2, 1]" />
-                    <TresMeshStandardMaterial color="#1e1b4b" :metalness="0.5" :roughness="0.2" />
+                    <TresBoxGeometry :args="[0.9, 1.2, 0.9]" />
+                    <TresMeshStandardMaterial 
+                      color="#0a0a20" 
+                      :metalness="0.8" 
+                      :roughness="0.1"
+                      :emissive="'#00f3ff'"
+                      :emissiveIntensity="0.1"
+                    />
                  </TresMesh>
               </template>
            </template>
         </TresGroup>
 
         <TresMesh :position="[store.mazeSize - 1, 0.1, store.mazeSize - 2]">
-           <TresBoxGeometry :args="[1, 0.2, 1]" />
-           <TresMeshStandardMaterial color="#10b981" :emissiveIntensity="2" />
+           <TresBoxGeometry :args="[0.8, 0.2, 0.8]" />
+           <TresMeshStandardMaterial 
+            color="#10b981" 
+            :emissive="'#10b981'"
+            :emissiveIntensity="3" 
+           />
         </TresMesh>
 
         <TresMesh :position="ballPos" cast-shadow>
-           <TresSphereGeometry :args="[0.3, 32, 32]" />
-           <TresMeshStandardMaterial color="#00f3ff" :emissiveIntensity="1" />
+           <TresSphereGeometry :args="[0.35, 32, 32]" />
+           <TresMeshStandardMaterial 
+             color="#00f3ff" 
+             :emissive="'#00f3ff'" 
+             :emissiveIntensity="2" 
+           />
         </TresMesh>
 
         <!-- Path Trail -->
@@ -270,24 +284,28 @@ function formatTime(seconds: number): string {
 
         <TresMesh :position="[store.mazeSize / 2, -0.1, store.mazeSize / 2]" :rotation="[-Math.PI / 2, 0, 0]">
            <TresPlaneGeometry :args="[store.mazeSize + 2, store.mazeSize + 2]" />
-           <TresMeshStandardMaterial color="#050510" />
+           <TresMeshStandardMaterial 
+            color="#020617" 
+            :metalness="0.5"
+            :roughness="0.2"
+           />
         </TresMesh>
       </TresCanvas>
     </div>
 
     <div class="relative z-10 h-full flex flex-col pointer-events-none p-7 md:p-11">
-       <header class="flex justify-between items-start gap-4 flex-wrap">
-          <div class="glass-panel p-5 md:p-7 flex items-center space-x-4 md:space-x-6">
+        <header class="flex justify-between items-start gap-4 flex-wrap">
+          <div class="glass-panel p-5 md:p-6 border-l-4 border-maze-cyan flex items-center space-x-6">
              <div class="space-y-1">
-                <span class="text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-slate-500">Level</span>
-                <div class="flex items-center space-x-2 md:space-x-3">
-                   <h1 class="text-2xl md:text-3xl font-display font-black text-white">{{ String(store.level).padStart(2, '0') }}</h1>
+                <span class="text-[8px] font-bold uppercase tracking-[0.4em] text-maze-cyan/60">NEURAL_DECODER</span>
+                <div class="flex items-center space-x-3">
+                   <h1 class="text-2xl md:text-4xl font-black text-maze-bone tracking-tighter">LVL_{{ String(store.level).padStart(2, '0') }}</h1>
                 </div>
              </div>
-             <div class="h-8 md:h-10 w-px bg-white/10"></div>
+             <div class="h-10 w-px bg-maze-cyan/20"></div>
              <div class="flex flex-col">
-                <span class="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">Size</span>
-                <span class="text-sm md:text-base font-bold text-white tracking-tighter">{{ store.mazeSize }}x{{ store.mazeSize }}</span>
+                <span class="text-[8px] font-bold uppercase tracking-widest text-maze-cyan/60">GRID_RES</span>
+                <span class="text-sm md:text-lg font-bold text-maze-cyan tracking-tighter">{{ store.mazeSize }}x{{ store.mazeSize }}</span>
              </div>
           </div>
 
@@ -299,16 +317,16 @@ function formatTime(seconds: number): string {
              </div>
           </div>
 
-          <div class="glass-panel p-4 md:p-6 flex items-center gap-2 text-white">
-             <div class="flex gap-1 md:gap-2">
+          <div class="glass-panel p-4 md:p-6 flex items-center gap-2 text-maze-bone">
+             <div class="flex gap-2">
                <button
                  v-for="size in [11, 15, 21]"
                  :key="size"
                  @click="changeMazeSize(size)"
-                 class="px-3 py-2 rounded-lg text-xs font-bold transition-all pointer-events-auto"
+                 class="px-4 py-3 rounded-none text-[10px] font-bold transition-all pointer-events-auto border"
                  :class="store.mazeSize === size
-                   ? 'bg-maze-neon text-black shadow-lg shadow-maze-neon/30'
-                   : 'bg-white/5 text-white/70 hover:bg-white/10'"
+                   ? 'bg-maze-cyan text-maze-obsidian border-maze-cyan shadow-[0_0_15px_rgba(0,243,255,0.5)]'
+                   : 'bg-maze-obsidian text-maze-cyan/50 border-maze-cyan/20 hover:border-maze-cyan/50 hover:text-maze-cyan'"
                >
                  {{ size }}x{{ size }}
                </button>
@@ -325,77 +343,77 @@ function formatTime(seconds: number): string {
        </header>
 
        <main class="flex-1 flex items-center justify-center">
-          <div v-if="store.status === 'idle'" class="glass-panel p-8 md:p-12 text-center space-y-6 pointer-events-auto max-w-sm">
-             <div class="space-y-2">
-                <h2 class="text-3xl md:text-4xl font-display font-black uppercase text-white tracking-tighter leading-none">Quantum<br/>Labyrinth</h2>
-                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em]">3D Maze Escape</p>
+          <div v-if="store.status === 'idle'" class="glass-panel p-8 md:p-12 text-center space-y-8 pointer-events-auto max-w-sm border-maze-cyan/30">
+             <div class="space-y-4">
+                <h2 class="text-3xl md:text-5xl font-black uppercase text-maze-bone tracking-tighter leading-tight italic">MAZE_NET</h2>
+                <div class="h-1 w-24 bg-maze-cyan mx-auto"></div>
+                <p class="text-[10px] font-bold text-maze-cyan/60 uppercase tracking-[0.4em]">NEURAL_INTERFACE_INIT</p>
              </div>
              <button
                @click="store.startLevel()"
-               class="w-full flex items-center justify-center space-x-2 bg-white text-black py-4 rounded-xl font-black uppercase tracking-widest text-xs hover:bg-maze-neon transition-all pointer-events-auto"
+               class="w-full flex items-center justify-center space-x-3 bg-maze-cyan text-maze-obsidian py-5 rounded-none font-bold uppercase tracking-[0.3em] text-xs hover:bg-maze-bone transition-all pointer-events-auto shadow-[0_0_20px_rgba(0,243,255,0.4)]"
              >
-               <Play :size="18" />
-               <span>Enter</span>
+               <Play :size="18" fill="currentColor" />
+               <span>CONNECT</span>
              </button>
           </div>
 
-          <div v-if="store.status === 'victory'" class="glass-panel p-8 md:p-12 text-center space-y-6 pointer-events-auto border-emerald-500/50 bg-emerald-950/20">
-             <Trophy :size="48" md:size="64" class="text-emerald-500 mx-auto animate-pulse" />
-             <div class="space-y-3 text-white">
-                <h2 class="text-4xl md:text-5xl font-display font-black uppercase text-emerald-500">Path Cleared!</h2>
-                <!-- V2: Efficiency Rating -->
+          <div v-if="store.status === 'victory'" class="glass-panel p-8 md:p-12 text-center space-y-8 pointer-events-auto border-maze-success/50 bg-maze-success/10 shadow-[0_0_50px_rgba(16,185,129,0.2)]">
+             <Trophy :size="48" md:size="64" class="text-maze-success mx-auto animate-pulse" />
+             <div class="space-y-3 text-maze-bone">
+                <h2 class="text-4xl md:text-6xl font-black uppercase text-maze-success tracking-tighter italic">GATEWAY_OPEN</h2>
                 <div class="flex items-center justify-center gap-1 text-2xl">
-                  <span v-for="n in 3" :key="n" :class="n <= efficiencyRating.stars ? 'text-amber-400' : 'text-slate-600'">★</span>
+                  <span v-for="n in 3" :key="n" :class="n <= efficiencyRating.stars ? 'text-maze-cyan' : 'text-maze-bone/20'">★</span>
                 </div>
-                <p class="text-xs font-black uppercase tracking-widest" :class="efficiencyRating.color">{{ efficiencyRating.label }}</p>
-                <div class="grid grid-cols-2 gap-4 text-xs mt-4">
-                  <div class="bg-white/5 p-2 rounded">
-                    <span class="text-slate-500 uppercase text-[10px]">Time</span>
-                    <p class="font-mono font-bold">{{ formatTime(store.time) }}</p>
+                <p class="text-[10px] font-bold uppercase tracking-[0.4em] text-maze-cyan/60">{{ efficiencyRating.label }}</p>
+                <div class="grid grid-cols-2 gap-4 text-[10px] mt-6">
+                  <div class="bg-maze-obsidian/60 p-4 border border-maze-cyan/20">
+                    <span class="text-maze-cyan/40 uppercase text-[8px] block mb-1">SYNC_TIME</span>
+                    <p class="font-bold text-lg">{{ formatTime(store.time) }}</p>
                   </div>
-                  <div class="bg-white/5 p-2 rounded">
-                    <span class="text-slate-500 uppercase text-[10px]">Moves</span>
-                    <p class="font-mono font-bold">{{ moveCount }}</p>
+                  <div class="bg-maze-obsidian/60 p-4 border border-maze-cyan/20">
+                    <span class="text-maze-cyan/40 uppercase text-[8px] block mb-1">PULSES</span>
+                    <p class="font-bold text-lg">{{ moveCount }}</p>
                   </div>
                 </div>
              </div>
-             <div class="flex flex-col sm:flex-row gap-3">
+             <div class="flex flex-col sm:flex-row gap-4">
                 <button
                   @click="store.nextLevel()"
-                  class="flex-1 flex items-center justify-center space-x-2 bg-emerald-500 text-white py-4 rounded-xl font-black uppercase tracking-widest text-xs shadow-lg shadow-emerald-500/20 pointer-events-auto"
+                  class="flex-1 flex items-center justify-center space-x-3 bg-maze-success text-maze-obsidian py-5 rounded-none font-bold uppercase tracking-[0.2em] text-xs shadow-lg shadow-maze-success/20 pointer-events-auto hover:bg-maze-bone transition-all"
                 >
-                  <span>Next Level</span>
+                  <span>NEXT_PROTOCOL</span>
                   <RotateCcw :size="16" />
                 </button>
              </div>
           </div>
 
-          <div v-if="store.status === 'playing'" class="glass-panel p-4 flex items-center space-x-4 text-slate-400 pointer-events-auto">
-             <span class="text-lg font-mono text-white">{{ formatTime(store.time) }}</span>
-             <div class="h-6 w-px bg-white/10"></div>
+          <div v-if="store.status === 'playing'" class="glass-panel p-4 flex items-center space-x-6 text-maze-cyan pointer-events-auto border-maze-cyan/20">
+             <span class="text-2xl font-bold tracking-tighter text-maze-bone">{{ formatTime(store.time) }}</span>
+             <div class="h-8 w-px bg-maze-cyan/20"></div>
              <button
                @click="isFirstPerson = !isFirstPerson"
-               class="px-3 py-2 rounded-lg text-xs font-bold transition-all"
-               :class="isFirstPerson ? 'bg-maze-neon text-black' : 'bg-white/5 text-white/70 hover:bg-white/10'"
+               class="px-4 py-2 rounded-none text-[10px] font-bold transition-all border"
+               :class="isFirstPerson ? 'bg-maze-cyan text-maze-obsidian border-maze-cyan' : 'bg-maze-obsidian text-maze-cyan/50 border-maze-cyan/20'"
                title="Toggle camera view"
              >
-               {{ isFirstPerson ? '1P' : '3P' }}
+               {{ isFirstPerson ? 'CORE_VIEW' : 'SYNAPSE_VIEW' }}
              </button>
-             <div class="flex items-center space-x-2">
+             <div class="flex items-center space-x-3 text-maze-cyan/60">
                 <Maximize2 :size="14" />
-                <span class="text-xs font-bold uppercase tracking-widest">WASD / Arrows</span>
+                <span class="text-[10px] font-bold uppercase tracking-widest">NAV: WASD / ARROWS</span>
              </div>
           </div>
        </main>
 
-       <footer class="flex justify-between items-end">
-          <div class="flex items-center space-x-4 md:space-x-6 text-[8px] md:text-[10px] font-black uppercase tracking-[0.4em] md:tracking-[0.5em] text-slate-500">
-             <span>© 2026 Made by MK — Built by Musharraf Kazi</span>
+        <footer class="flex justify-between items-end">
+          <div class="flex items-center space-x-4 md:space-x-6 text-[8px] md:text-[10px] font-bold uppercase tracking-[0.5em] text-maze-cyan/40">
+             <span>MAZE_NET_V3 // PROTOCOL_NEURAL</span>
           </div>
-          <div class="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-slate-500">
-             Press <kbd class="px-2 py-1 bg-white/10 rounded mx-1">H</kbd> for Help
+          <div class="text-[8px] md:text-[10px] font-bold uppercase tracking-widest text-maze-cyan/60">
+             CMD: <kbd class="px-2 py-1 bg-maze-cyan/10 border border-maze-cyan/20 rounded-none mx-1 text-maze-cyan">H</kbd>_HELP
           </div>
-       </footer>
+        </footer>
     </div>
   </div>
 </template>

@@ -72,8 +72,8 @@ function formatTime(seconds: number): string {
         >
           <header class="flex items-center justify-between p-6 border-b border-white/10">
             <div class="flex items-center space-x-3">
-              <Settings :size="24" class="text-maze-neon" />
-              <h2 id="settings-title" class="text-xl font-bold text-white">Settings</h2>
+              <Settings :size="24" class="text-maze-cyan" />
+              <h2 id="settings-title" class="text-xl font-bold text-maze-bone uppercase tracking-widest italic">NEURAL_DECODER_CONFIG</h2>
             </div>
             <button
               @click="close"
@@ -90,19 +90,18 @@ function formatTime(seconds: number): string {
                 <Volume2 :size="16" />
                 <span>Audio</span>
               </h3>
-              <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
-                <span class="text-white font-medium">Sound Effects</span>
+              <div class="flex items-center justify-between p-4 bg-maze-obsidian border border-maze-cyan/10 rounded-none">
+                <span class="text-maze-bone font-medium uppercase text-xs tracking-widest">AUDIO_EMISSION</span>
                 <button
                   @click="settings.toggleSound()"
-                  class="relative w-14 h-7 rounded-full transition-colors"
-                  :class="settings.soundEnabled ? 'bg-maze-neon' : 'bg-slate-600'"
+                  class="relative w-14 h-7 rounded-none transition-colors border border-maze-cyan/20"
+                  :class="settings.soundEnabled ? 'bg-maze-cyan/40 border-maze-cyan' : 'bg-maze-obsidian'"
                   role="switch"
                   :aria-checked="settings.soundEnabled"
-                  :aria-label="settings.soundEnabled ? 'Disable sound effects' : 'Enable sound effects'"
                 >
                   <span
-                    class="absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow transition-transform"
-                    :class="settings.soundEnabled ? 'translate-x-7' : 'translate-x-0'"
+                    class="absolute top-1 left-1 w-5 h-5 bg-maze-bone rounded-none shadow transition-transform"
+                    :class="settings.soundEnabled ? 'translate-x-7 bg-maze-cyan' : 'translate-x-0'"
                   />
                 </button>
               </div>
@@ -118,14 +117,14 @@ function formatTime(seconds: number): string {
                   v-for="option in themeOptions"
                   :key="option.value"
                   @click="settings.setTheme(option.value)"
-                  class="flex flex-col items-center p-4 rounded-xl transition-all border-2"
+                  class="flex flex-col items-center p-4 rounded-none transition-all border"
                   :class="settings.theme === option.value
-                    ? 'border-maze-neon bg-maze-neon/10'
-                    : 'border-white/10 hover:border-white/30 bg-white/5'"
+                    ? 'border-maze-cyan bg-maze-cyan/10 text-maze-cyan shadow-[0_0_10px_rgba(0,243,255,0.2)]'
+                    : 'border-maze-cyan/10 hover:border-maze-cyan/40 bg-maze-obsidian text-maze-cyan/40'"
                   :aria-pressed="settings.theme === option.value"
                 >
-                  <component :is="option.icon" :size="20" class="mb-2" :class="settings.theme === option.value ? 'text-maze-neon' : 'text-slate-400'" />
-                  <span class="text-sm font-medium" :class="settings.theme === option.value ? 'text-white' : 'text-slate-400'">{{ option.label }}</span>
+                  <component :is="option.icon" :size="20" class="mb-2" />
+                  <span class="text-[10px] font-bold uppercase tracking-widest">{{ option.label }}</span>
                 </button>
               </div>
             </section>
@@ -140,14 +139,14 @@ function formatTime(seconds: number): string {
                   v-for="option in difficultyOptions"
                   :key="option.value"
                   @click="settings.setDifficulty(option.value)"
-                  class="p-4 rounded-xl transition-all border-2 text-left"
+                  class="p-4 rounded-none transition-all border text-left"
                   :class="settings.difficulty === option.value
-                    ? 'border-maze-neon bg-maze-neon/10'
-                    : 'border-white/10 hover:border-white/30 bg-white/5'"
+                    ? 'border-maze-cyan bg-maze-cyan/10 shadow-[0_0_10px_rgba(0,243,255,0.2)]'
+                    : 'border-maze-cyan/10 hover:border-maze-cyan/40 bg-maze-obsidian'"
                   :aria-pressed="settings.difficulty === option.value"
                 >
-                  <span class="block text-sm font-bold" :class="settings.difficulty === option.value ? 'text-white' : 'text-slate-300'">{{ option.label }}</span>
-                  <span class="text-xs text-slate-500">{{ option.size }}</span>
+                  <span class="block text-xs font-bold uppercase tracking-widest" :class="settings.difficulty === option.value ? 'text-maze-cyan' : 'text-maze-bone/40'">{{ option.label }}</span>
+                  <span class="text-[10px] font-mono" :class="settings.difficulty === option.value ? 'text-maze-cyan/60' : 'text-maze-cyan/20'">{{ option.size }}</span>
                 </button>
               </div>
             </section>
@@ -157,22 +156,22 @@ function formatTime(seconds: number): string {
                 <Trophy :size="16" />
                 <span>Statistics</span>
               </h3>
-              <div class="grid grid-cols-2 gap-4 p-4 bg-white/5 rounded-xl">
-                <div class="text-center">
-                  <div class="text-2xl font-bold text-white">{{ stats.totalGames }}</div>
-                  <div class="text-xs text-slate-500 uppercase tracking-wider">Games Played</div>
+              <div class="grid grid-cols-2 gap-4 p-4 bg-maze-obsidian border border-maze-cyan/10 rounded-none">
+                <div class="text-center p-3 border border-maze-cyan/5 bg-maze-void">
+                  <div class="text-xl font-bold text-maze-bone">{{ stats.totalGames }}</div>
+                  <div class="text-[8px] text-maze-cyan/40 uppercase tracking-widest space-y-1">SYNC_SESSIONS</div>
                 </div>
-                <div class="text-center">
-                  <div class="text-2xl font-bold text-emerald-500">{{ stats.winRate }}%</div>
-                  <div class="text-xs text-slate-500 uppercase tracking-wider">Win Rate</div>
+                <div class="text-center p-3 border border-maze-cyan/5 bg-maze-void">
+                  <div class="text-xl font-bold text-maze-success">{{ stats.winRate }}%</div>
+                  <div class="text-[8px] text-maze-cyan/40 uppercase tracking-widest">SUCCESS_RATE</div>
                 </div>
-                <div class="text-center">
-                  <div class="text-2xl font-bold text-amber-500">{{ formatTime(stats.bestTime) }}</div>
-                  <div class="text-xs text-slate-500 uppercase tracking-wider">Best Time</div>
+                <div class="text-center p-3 border border-maze-cyan/5 bg-maze-void">
+                  <div class="text-xl font-bold text-maze-magenta">{{ formatTime(stats.bestTime) }}</div>
+                  <div class="text-[8px] text-maze-cyan/40 uppercase tracking-widest">APEX_SYNC</div>
                 </div>
-                <div class="text-center">
-                  <div class="text-2xl font-bold text-maze-neon">{{ stats.currentStreak }}</div>
-                  <div class="text-xs text-slate-500 uppercase tracking-wider">Current Streak</div>
+                <div class="text-center p-3 border border-maze-cyan/5 bg-maze-void">
+                  <div class="text-xl font-bold text-maze-cyan">{{ stats.currentStreak }}</div>
+                  <div class="text-[8px] text-maze-cyan/40 uppercase tracking-widest">PULSE_STREAK</div>
                 </div>
               </div>
               <button
@@ -202,9 +201,9 @@ function formatTime(seconds: number): string {
             </section>
           </div>
 
-          <footer class="p-6 border-t border-white/10 text-center">
-            <p class="text-xs text-slate-500">
-              Quantum Labyrinth v1.0.0 - Built with Vue 3 + TresJS
+          <footer class="p-6 border-t border-maze-cyan/10 text-center">
+            <p class="text-[10px] text-maze-cyan/30 uppercase tracking-[0.3em]">
+              MAZE_NET // CORE_ENGINE v3.0.0
             </p>
           </footer>
         </div>
