@@ -1,98 +1,137 @@
 # 31-game-maze-net
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Version-3.0.0-00F3FF?style=for-the-badge" alt="Version">
-  <img src="https://img.shields.io/badge/Style-Neural_Cyber-FF00E5?style=for-the-badge" alt="Style">
-  <img src="https://img.shields.io/badge/Stack-Vue_TresJS-4FC08D?style=for-the-badge&logo=vue.js" alt="Stack">
-</p>
+**A Mind-Bending 3D Maze Adventure**
 
-## 🌐 The Synaptic Escape
-
-**MAZE_NET** is a high-fidelity, hardware-accelerated 3D labyrinth engine that simulates neural pathway navigation. Trapped within a shifting quantum grid, you must locate the exit node before the connection destabilizes.
-
-### ⚡ Neural Protocol (v3.0)
-- **Neural Void Design**: Re-engineered obsidian-base design system with electric cyan pulse highlights.
-- **Quantum HUD**: Tactical overlay for real-time telemetry and efficiency tracking.
-- **Dual-Mode Sync**: Seamlessly toggle between Cognitive Overview (3P) and Direct Neural Interface (1P).
-- **Emissive Pathing**: Hardware-accelerated memory trails that visualize your navigation history.
-
-## Tech Stack
-- **Core**: Vue 3.5 (Script Setup)
-- **Engine**: TresJS + Three.js
-- **Intelligence**: Pinia (Neural State)
-- **Styling**: Tailwind CSS v4 (Obsidian Matrix)
-- **Icons**: Lucide Vue
-
-## Setup & Build Instructions
-
-### Prerequisites
-- Node.js 20.x or higher
-- npm 10.x or higher
-
-### Installation
-```bash
-npm install
-```
-
-### Development
-```bash
-npm run dev
-```
-
-### Production Build
-```bash
-npm run build
-```
-
-## Deployment
-Deployed to GitHub Pages via automated CI/CD workflows. Optimized for 60fps stable performance on high-DPI displays.
+Navigate through procedurally generated mazes in stunning 3D. Challenge yourself with time attacks, race against friends, or create your own masterpieces.
 
 ---
 
-**License:** MIT
-**Architect:** mk-knight23
-
----
-
-<p align="center">
-  <a href="https://31-game-maze-net.vercel.app">🚀 Play Now (Vercel)</a>
-</p>
-
-## 🎮 Live Demos
+## 🎮 Live Demo
 
 | Platform | URL |
 |----------|-----|
 | **Vercel** | [31-game-maze-net.vercel.app](https://31-game-maze-net.vercel.app) |
-| **Render** | [three1-game-maze-net.onrender.com](https://three1-game-maze-net.onrender.com) |
-- Vercel: [Deploy your own](https://vercel.com/new)
-- Netlify: [Deploy your own](https://app.netlify.com/start)
 
 ---
 
-## 📝 Design Notes (V2)
+## 🌟 Features
 
-### Intentional Quirk: The Star Rating System
-I added a 3-star efficiency rating based on move count vs. optimal path. The formula is arbitrary—optimal is roughly mazeSize × 2 moves. Real optimal pathfinding would require solving the maze computationally, which is overkill. The stars are "fair enough" estimates. Humans respond to gamification, even when the math is fuzzy.
+### Core Gameplay
+- **3D Maze Rendering**: Beautiful Three.js-powered 3D mazes
+- **Multiple Algorithms**: Various maze generation algorithms
+- **Responsive Controls**: Keyboard and touch controls
+- **Vue 3 + TresJS**: Modern reactive framework
 
-### Tradeoff: No Undo Button
-You can backtrack, but there's no "undo last move" button. If you trap yourself in a dead end, you walk out manually. The tradeoff: realism vs. convenience. An undo button would make the maze trivial—just try every path and rewind. Walking back reinforces the "being lost" feeling. It's annoying on purpose.
+### 🆕 New Features (V2)
 
-### What I Chose NOT to Build
-No procedural difficulty that adapts to your skill. The maze sizes are fixed (11/15/21). Adaptive difficulty would track your win rate and adjust maze complexity. I didn't build that because predictable difficulty is honest. Sometimes you want an easy maze. Sometimes you want punishment. The player chooses, not the algorithm.
+#### 1. Procedural Maze Generation
+- **5 Algorithms**: Recursive Backtracker, Prim's, Kruskal's, Eller's, Binary Tree
+- **Difficulty Settings**: Easy, Medium, Hard, Extreme
+- **Seedable Generation**: Reproduce specific mazes with seeds
+- **Solver Included**: Auto-solve any maze to find the optimal path
+- **Configurable Sizes**: From 10x10 to 50x50 and beyond
 
-## 🎉 Additional Features (V3)
+#### 2. Multiplayer Race Mode
+- **Real-time Racing**: Compete against other players simultaneously
+- **Room System**: Create or join race rooms
+- **Live Position Tracking**: See opponents in real-time
+- **Leaderboards**: Track your best times against others
+- **Color-Coded Players**: Easy identification of racers
 
-Two focused additions to aid navigation:
+#### 3. Time Attack Challenges
+- **Multiple Categories**: Speed, Efficiency, Blind, Memory challenges
+- **Medal System**: Gold, Silver, Bronze based on performance
+- **Daily Challenges**: New challenge every day with special rewards
+- **Progressive Unlocking**: Complete challenges to unlock harder ones
+- **Score Tracking**: Total score across all completed challenges
 
-### Directional Hint System
-**Why added**: In larger mazes (21x21), it's easy to lose track of which direction leads toward the exit.
+**Challenge Examples:**
+- ⚡ Quick Sprint: Complete 10x10 maze in under 30 seconds
+- 🧭 Perfect Path: Find optimal solution with minimal steps
+- 👻 Blind Faith: Navigate without seeing the full maze
+- 🗺️ Map Reveal: Entire maze shown for 5 seconds
 
-**What changed**: Added a subtle arrow indicator at the top of the screen pointing generally toward the exit. It updates every few seconds, not in real-time—you still need to navigate the maze yourself. The hint is intentionally vague; it won't show you the path, just the general direction.
+#### 4. Power-up Items
+Eight collectible power-ups to aid your journey:
 
-### Completion Rate Tracking
-**Why added**: The game tracks best times, but not how many mazes you've actually completed.
+- **⚡ Speed Boost** (Common): Move 2x faster for 10 seconds
+- **👻 Wall Phasing** (Rare): Walk through walls for 5 seconds
+- **🧭 Compass** (Common): Shows direction to exit
+- **⏸️ Time Freeze** (Epic): Stops the timer for 10 seconds
+- **💡 Hint** (Common): Reveals correct path for 3 seconds
+- **⏰ Extra Time** (Rare): Adds 30 seconds to clock
+- **🌀 Teleport** (Epic): Jump to random location
+- **🗺️ Map Reveal** (Legendary): Shows entire maze for 5 seconds
 
-**What changed**: Added a completion counter showing total mazes finished per difficulty level. Seeing "Easy: 47 completed" gives a sense of accumulated progress, even if your best time hasn't improved lately.
+#### 5. Custom Maze Editor
+- **Visual Editor**: Intuitive click-to-edit interface
+- **Multiple Tools**: Wall, Path, Start, End, Erase
+- **Resize Grid**: Create mazes from 5x5 to 50x50
+- **Import/Export**: Share mazes via JSON
+- **Publish System**: Share your creations with the world
+- **Play Counter**: Track how many times your maze was played
 
-### Intentionally Rejected: Full Minimap
-I considered adding an overhead minimap showing the entire maze layout. Rejected because it trivializes the exploration. Half the challenge is building a mental map of where you've been. A minimap would turn the game into "follow the dots" instead of genuine navigation. Getting lost is the point.
+## 🛠️ Tech Stack
+- **Frontend**: Vue 3, TypeScript, Vite 6
+- **3D Graphics**: TresJS (Three.js wrapper)
+- **State Management**: Pinia
+- **Styling**: Tailwind CSS v4
+- **Routing**: Vue Router 4
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/mk-knight23/31-game-maze-net.git
+
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+## 📖 Usage
+
+### Playing the Game
+1. Choose a maze size and algorithm
+2. Use arrow keys or WASD to move
+3. Find the exit as fast as possible
+4. Collect power-ups for advantages
+5. Beat your best time!
+
+### Creating Custom Mazes
+1. Open the Maze Editor
+2. Select grid size
+3. Use tools to draw walls and paths
+4. Place start and end points
+5. Save and play your creation!
+
+### Multiplayer Racing
+1. Create a race room or join existing
+2. Wait for other players
+3. Host starts the race
+4. First to exit wins!
+
+## 🏆 Achievements
+
+Complete challenges to unlock:
+- Bronze medal: Complete within par time
+- Silver medal: Beat target time
+- Gold medal: Achieve fastest time
+- Legendary: Complete all challenges
+
+## 📝 License
+
+MIT License - feel free to use this project for learning or inspiration.
+
+---
+*Made by MK — Musharraf Kazi*
